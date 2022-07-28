@@ -1,0 +1,46 @@
+movies
+-
+movie_id PK int
+movie_title string
+IMDB_score float
+meta_score float
+run_time int
+certificate string FK >- certificates.certificate_abbrv
+year int
+gross int
+
+genres
+-
+genre PK string
+
+movie_genres
+-
+genre_id PK INT
+movie_id fk >- movies.movie_id
+genre string FK >- genres.genre
+
+directors
+-
+director_id PK int
+director_name string
+
+directed_by
+-
+movie_id pk fk - movies.movie_id
+director_id fk >- directors.director_id
+
+oscar_categories
+-
+category_name PK string
+
+oscar_winners
+-
+winner_id INT PK
+movie_id INT FK >- movies.movie_id
+category string FK >- oscar_categories.category_name
+win_year DATE
+
+certificates
+-
+certificate_abbrv string PK
+certificate_long string
