@@ -15,7 +15,7 @@ DROP TABLE movies;
 -- Create tables OUTER
 
 CREATE TABLE directors (
- 	director_id SERIAL PRIMARY KEY,
+ 	director_id INT PRIMARY KEY,
 	director_name TEXT NOT NULL
 );
 
@@ -24,18 +24,18 @@ CREATE TABLE oscar_categories (
 );
 
 CREATE TABLE genres (
- 	genre_name TEXT PRIMARY KEY
+ 	genre TEXT PRIMARY KEY
 );
 
 -- CREATE tables - MAIN
 
 CREATE TABLE movies (
- 	movie_id SERIAL PRIMARY KEY,
+ 	movie_id INT PRIMARY KEY,
 	movie_title TEXT NOT NULL,
 	imdb_score float,
 	meta_score float,
-	run_time int,
-	year int,
+	runtime int,
+	release_year int,
 	gross int			
 );
 
@@ -43,20 +43,21 @@ CREATE TABLE movies (
 
 
 CREATE TABLE movie_genres (
- 	genre_id SERIAL PRIMARY KEY,
 	movie_id INT REFERENCES movies (movie_id),
-	genre TEXT REFERENCES genres (genre_name)
+	genre TEXT REFERENCES genres (genre),
+	PRIMARY KEY (movie_id,genre)
 );
 
 CREATE TABLE oscar_winners (
- 	winner_id SERIAL PRIMARY KEY,
 	movie_id INT REFERENCES movies (movie_id),
-	category TEXT REFERENCES oscar_categories (category_name)
+	category TEXT REFERENCES oscar_categories (category_name),
+	PRIMARY KEY (movie_id,category)
 );
 
 CREATE TABLE directed_by (
-	movie_id int NOT NULL,
-	director_id int REFERENCES directors (director_id)
+	movie_id int REFERENCES movies (movie_id),
+	director_id int REFERENCES directors (director_id),
+	PRIMARY KEY (movie_id,director_id)
 );
 
 
