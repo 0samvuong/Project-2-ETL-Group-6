@@ -34,6 +34,5 @@ category_name PK string
 
 oscar_winners
 -
-winner_id INT PK
-movie_id INT FK >- movies.movie_id
-category string FK >- oscar_categories.category_name
+movie_id INT PK FK >- movies.movie_id
+category string PK FK >- oscar_categories.category_name
