@@ -2,10 +2,10 @@ movies
 -
 movie_id PK int
 movie_title string
-IMDB_score float
+imdb_score float
 meta_score float
-run_time int
-year int
+runtime int
+release_year int
 gross int
 
 genres
@@ -14,9 +14,8 @@ genre PK string
 
 movie_genres
 -
-genre_id PK INT
-movie_id fk >- movies.movie_id
-genre string FK >- genres.genre
+movie_id PK FK >- movies.movie_id
+genre string PK FK >- genres.genre
 
 directors
 -
